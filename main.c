@@ -9,12 +9,30 @@ typedef struct {
     float preco;
 } Produto;
 
-void consultarEstoque() {
-    printf("Estoque:\n");
+void venderProduto() {
+    char nome[50];
+    int quantidade;
+    
+    printf("Digite o nome do produto a ser vendido: ");
+    scanf("%s", nome);
+    printf("Digite a quantidade a ser vendida: ");
+    scanf("%d", &quantidade);
+    
     for (int i = 0; i < totalProdutos; i++) {
-        printf("Produto: %s | Quantidade: %d | Preço: %.2f\n", estoque[i].nome, estoque[i].quantidade, estoque[i].preco);
+        if (strcmp(estoque[i].nome, nome) == 0) {
+            if (estoque[i].quantidade >= quantidade) {
+                estoque[i].quantidade -= quantidade;
+                printf("Venda realizada com sucesso!\n");
+                return;
+            } else {
+                printf("Quantidade solicitada maior que a disponível!\n");
+                return;
+            }
+        }
     }
+    printf("Produto não encontrado!\n");
 }
+
 
 int main() {
     int opcao;
