@@ -9,28 +9,12 @@ typedef struct {
     float preco;
 } Produto;
 
-Produto estoque[MAX_PRODUTOS];
-int totalProdutos = 0;
-
-void adicionarProduto() {
-    if (totalProdutos >= MAX_PRODUTOS) {
-        printf("Estoque cheio!\n");
-        return;
+void consultarEstoque() {
+    printf("Estoque:\n");
+    for (int i = 0; i < totalProdutos; i++) {
+        printf("Produto: %s | Quantidade: %d | Preço: %.2f\n", estoque[i].nome, estoque[i].quantidade, estoque[i].preco);
     }
-    
-    Produto p;
-    printf("Digite o nome do produto: ");
-    scanf("%s", p.nome);
-    printf("Digite a quantidade: ");
-    scanf("%d", &p.quantidade);
-    printf("Digite o preço: ");
-    scanf("%f", &p.preco);
-    
-    estoque[totalProdutos] = p;
-    totalProdutos++;
-    printf("Produto adicionado com sucesso!\n");
 }
-
 
 int main() {
     int opcao;
